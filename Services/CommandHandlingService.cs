@@ -6,6 +6,8 @@ using System;
 using System.Reflection;
 using System.Threading.Tasks;
 
+using TextCommandFramework;
+
 namespace TextCommandFramework.Services
 {
     public class CommandHandlingService
@@ -47,7 +49,7 @@ namespace TextCommandFramework.Services
             // (!message.HasCharPrefix('!', ref argPos)) 
             // (!message.HasMentionPrefix(_discord.CurrentUser, ref argPos)
             // for a more traditional command format like !help.
-            if (!message.HasCharPrefix('!', ref argPos))
+            if (!message.HasCharPrefix(Program._config["commandchard"][0], ref argPos))
                 return;
 
             var context = new SocketCommandContext(_discord, message);

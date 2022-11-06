@@ -28,7 +28,7 @@ namespace TextCommandFramework
         static void Main(string[] args)
             => new Program().MainAsync().GetAwaiter().GetResult();
 
-        private IConfiguration _config;
+        public static IConfiguration _config;
 
         public async Task MainAsync()
         {
@@ -76,7 +76,7 @@ namespace TextCommandFramework
         }
 
         // Load config file
-        private IConfiguration BuildConfig()
+        public IConfiguration BuildConfig()
         {
             return new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())

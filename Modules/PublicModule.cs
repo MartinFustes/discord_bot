@@ -1,6 +1,7 @@
 using Discord;
 using Discord.Commands;
 using System.IO;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TextCommandFramework.Services;
 
@@ -16,6 +17,21 @@ namespace TextCommandFramework.Modules
         [Alias("pong", "hello")]
         public Task PingAsync()
             => ReplyAsync("pong!");
+
+        [Command("help")]
+        public async Task HelpAsync()
+        {
+            List<string> list = new List<string>();
+            using (StreamReader reader = new StreamReader(Directory.GetCurrentDirectory() + "/help.txt"))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    list.Add(line); // Add to list.
+                    await ReplyAsync(Program._config["commandchard"][0] + line); // Write command
+                }
+            }
+        }
 
         [Command("cat")]
         public async Task CatAsync()
@@ -91,7 +107,7 @@ namespace TextCommandFramework.Modules
         //     await ReplyAsync(user.Mention + " a tomar por culo! >:)))");
         // }
 
-        // Disconect a user
+        // Disconnect a user
         [Command("atucasa")]
         [RequireContext(ContextType.Guild)]
         // make sure the user invoking the command can ban

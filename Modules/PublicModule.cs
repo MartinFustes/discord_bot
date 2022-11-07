@@ -24,12 +24,14 @@ namespace TextCommandFramework.Modules
             List<string> list = new List<string>();
             using (StreamReader reader = new StreamReader(Directory.GetCurrentDirectory() + "/help.txt"))
             {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    list.Add(line); // Add to list.
-                    await ReplyAsync(Program._config["commandchard"][0] + line); // Write command
-                }
+                string text = reader.ReadToEnd();
+                await ReplyAsync(text.Replace('!', Program._config["commandchard"][0]));
+                // string line;
+                // while ((line = reader.ReadLine()) != null)
+                // {
+                //     list.Add(line); // Add to list.
+                //     await ReplyAsync(Program._config["commandchard"][0] + line); // Write command
+                // }
             }
         }
 
@@ -110,9 +112,9 @@ namespace TextCommandFramework.Modules
         // Disconnect a user
         [Command("atucasa")]
         [RequireContext(ContextType.Guild)]
-        // make sure the user invoking the command can ban
+        // make sure the user invoking the command can kick
         [RequireUserPermission(GuildPermission.KickMembers)]
-        // make sure the bot itself can ban
+        // make sure the bot itself can kick
         [RequireBotPermission(GuildPermission.KickMembers)]
         public async Task OutUserAsync(IGuildUser user, [Remainder] IVoiceChannel channel = null)
         {

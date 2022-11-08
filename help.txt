@@ -3,6 +3,5 @@
 !catlike "Algo" -> Foto aleatoria de un gato con "Algo" como tag.
 !catlikesay "Algo/Algo2" -> Foto aleatoria de un gato con "Algo" como tag y "ALgo2" como texto.
 !catgif -> Gif aleatorio de un gato.
-!insultar "@Alguien" -> pues eso.
 !atucasa "@Alguien" -> Mover a Alguien.
 !penis -> Ensena a los demás cuanto de largo tienes el pene.

@@ -26,12 +26,6 @@ namespace TextCommandFramework.Modules
             {
                 string text = reader.ReadToEnd();
                 await ReplyAsync(text.Replace('!', Program._config["commandchard"][0]));
-                // string line;
-                // while ((line = reader.ReadLine()) != null)
-                // {
-                //     list.Add(line); // Add to list.
-                //     await ReplyAsync(Program._config["commandchard"][0] + line); // Write command
-                // }
             }
         }
 
@@ -88,57 +82,6 @@ namespace TextCommandFramework.Modules
 
             await ReplyAsync(user.ToString());
         }
-
-        [Command("insultar")]
-        public Task InsultUser(IUser user = null)
-        {
-            string insulto = "warra";
-            return ReplyAsync(user.Mention + " es un/a " + insulto);
-        }
-
-        // // Ban a user
-        // [Command("ban")]
-        // [RequireContext(ContextType.Guild)]
-        // // make sure the user invoking the command can ban
-        // [RequireUserPermission(GuildPermission.BanMembers)]
-        // // make sure the bot itself can ban
-        // [RequireBotPermission(GuildPermission.BanMembers)]
-        // public async Task BanUserAsync(IGuildUser user, [Remainder] string reason = null)
-        // {
-        //     await user.Guild.AddBanAsync(user, reason: reason);
-        //     await ReplyAsync(user.Mention + " a tomar por culo! >:)))");
-        // }
-
-        // Disconnect a user
-        [Command("atucasa")]
-        [RequireContext(ContextType.Guild)]
-        // make sure the user invoking the command can kick
-        [RequireUserPermission(GuildPermission.KickMembers)]
-        // make sure the bot itself can kick
-        [RequireBotPermission(GuildPermission.KickMembers)]
-        public async Task OutUserAsync(IGuildUser user, [Remainder] IVoiceChannel channel = null)
-        {
-            await user.Guild.MoveAsync(user, channel);
-            await ReplyAsync(user.Mention + " a tomar por culo! >:)))");
-        }
-
-
-        // [Remainder] takes the rest of the command's arguments as one argument, rather than splitting every space
-        [Command("echo")]
-        public Task EchoAsync([Remainder] string text)
-            // Insert a ZWSP before the text to prevent triggering other bots!
-            => ReplyAsync('\u200B' + text);
-
-        // 'params' will parse space-separated elements into a list
-        [Command("list")]
-        public Task ListAsync(params string[] objects)
-            => ReplyAsync("You listed: " + string.Join("; ", objects));
-
-        // Setting a custom ErrorMessage property will help clarify the precondition error
-        [Command("guild_only")]
-        [RequireContext(ContextType.Guild, ErrorMessage = "Sorry, this command must be ran from within a server, not a DM!")]
-        public Task GuildOnlyCommand()
-            => ReplyAsync("Nothing to see here!");
 
         [Command("penis")]
         public Task PenisLength()

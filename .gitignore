@@ -5,6 +5,10 @@
 config*
 *.env
 
+# VSc
+.vscode/
+.vscode/*
+
 # User-specific files
 *.suo
 *.user
